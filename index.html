@@ -392,15 +392,11 @@
     fallingLeaves.appendChild(leaf);
   }
 
-  function startPasswordAudio() {
-    passwordAudio.play().catch(() => {});
-  }
-
-  startPasswordAudio();
-  document.addEventListener('pointerdown', startPasswordAudio, { passive: true });
+  passwordAudio.play().catch(() => {
+    document.addEventListener('click', () => passwordAudio.play(), { once: true });
+  });
 
   function enterDigit(digit) {
-    startPasswordAudio();
     if (input.length < 4) {
       input += digit;
     }
